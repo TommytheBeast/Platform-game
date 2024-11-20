@@ -212,6 +212,9 @@ def main(window):
     
     player = Player(100, 100, 50, 50)
     floor = [Block(i * block_size, HEIGHT - block_size, block_size) for i in range(-WIDTH // block_size, WIDTH * 2 // block_size)]
+    
+    offset_x = 0
+    scroll_area_width = 240
 
     
     run = True
@@ -231,6 +234,9 @@ def main(window):
         player.loop(FPS)
         handle_movement(pygame.key.get_pressed(), player, floor)
         draw(window, tiles, bg_image, player, floor)
+        
+        if ((player.rect.right - offset_x >= WIDTH - scroll_area_width) and player.x_vel > 0) or ((player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0):
+            offset_x += player.x_vel
             
     pygame.quit()
     quit()

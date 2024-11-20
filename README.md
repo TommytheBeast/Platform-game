@@ -1,2 +1,2 @@
 # Platform-game
-Simple platform game in Godot
+Simple platform game in Python
